@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html>
+    <head>
+    	<meta http-equiv="content-type" content="application/ce-html+xml; charset=utf-8"/>
+        <link rel="stylesheet" type="text/css" href="/static/list.css"/>
+        <title>Video Listing</title>
+    </head>
+  <body>
+    <div id="header">
+        <a href="javascript:window.location.reload()">Reload</a> &mdash; <a href="{{ logout }}">Logout</a>
+    </div>
+    <ul>
+    {% for video in videos %}
+    <li class="vl">
+        <div class="vl-card">
+            <img src="{{ video.thumb }}" alt="Thumbnail"/>
+            <div class="vl-title">
+                <a href="/player?url={{ video.url }}">{{ video.title }}</a>
+            </div>
+            <div class="vl-delete">
+                <a href="/delete?url={{ video.url }}">delete</a>
+            </div>
+        </div>
+    </li>
+    {% endfor %}
+    </ul>
+  </body>
+</html>

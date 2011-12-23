@@ -1,0 +1,35 @@
+body {
+    background: white;
+    font-size: xx-large;
+    margin: 5%;
+}
+
+div#header {
+    margin-left: auto;
+    margin-right: auto;
+    width: 25%
+}
+
+.vl {
+    display: inline;
+}
+
+.vl-card {
+    width:45%;
+    display:inline-block;
+}
+
+.vl-card img {
+    width: 150px;
+}
+
+.vl-title {
+    vertical-align: top;
+    width: 50%;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.vl-delete {
+    font-size: large;
+}
