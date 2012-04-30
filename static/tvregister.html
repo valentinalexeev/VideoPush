@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html>
+    <head>
+    	<meta http-equiv="content-type" content="application/ce-html+xml; charset=utf-8"/>
+        <link rel="stylesheet" type="text/css" href="/static/list.css"/>
+        <title>TV Access Registration</title>
+    </head>
+  <body>
+    <div id="header">
+        TV Access Registration
+    </div>
+    <div id="info">
+        Register a new owner for the TV with the Video Push.
+    </div>
+    <div>
+        <form action="/tvregister">
+            <input type="text" name="tvcookie" label="TV Identifier"/>
+			<input type="text" name="userid" label="Owner's Google account"/>
+            <input type="submit" value="Create"/>
+        </form>
+    </div>
+  </body>
+</html>
