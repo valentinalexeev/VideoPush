@@ -4,6 +4,11 @@
     </head>
 
     <body>
-        Bookmark link (Firefox): <a href="javascript:(function(){ms=document.createElement('SCRIPT');ms.type='text/javascript';ms.src='http://vavpush.appspot.com/static/bookmarklet.firefox.js';document.getElementsByTagName('head')[0].appendChild(ms);})();">VK Video URL</a>
+        Bookmark link (Firefox): <a href="javascript:(function(){ms=document.createElement('SCRIPT');ms.type='text/javascript';ms.src='http://vavpush.appspot.com/static/bookmarklet.js';document.getElementsByTagName('head')[0].appendChild(ms);})();">VK Video URL</a>
+        Bookmark link (Firefox, test): <a href="javascript:(function(){ms=document.createElement('SCRIPT');ms.type='text/javascript';ms.src='http://localhost:8080/static/bookmarklet.local.js';document.getElementsByTagName('head')[0].appendChild(ms);})();">VK Video URL (local)</a>
+		Bookmark text:
+		<textarea>
+		javascript:(function(){ms=document.createElement('SCRIPT');ms.type='text/javascript';ms.src='http://vavpush.appspot.com/static/bookmarklet.js';document.getElementsByTagName('head')[0].appendChild(ms);})();
+		</textarea>
     </body>
 </html>
