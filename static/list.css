@@ -1,7 +1,7 @@
 body {
     background: white;
     font-size: xx-large;
-    margin: 5%;
+    margin: 3%;
 }
 
 div#header {
@@ -10,26 +10,48 @@ div#header {
     width: 25%
 }
 
-.vl {
-    display: inline;
+.vl-list {
+    margin: 3%;
 }
 
 .vl-card {
-    width:45%;
-    display:inline-block;
+    width: 100%;
 }
 
-.vl-card img {
-    width: 150px;
+.vl-img {
+    text-align: center;
+    width: 1px;
+}
+
+.vl-img img {
+    width: 180px;
+}
+
+.vl-title-row {
+    height: 100%;
 }
 
 .vl-title {
     vertical-align: top;
-    width: 50%;
-    display: inline-block;
+    xwidth: 50%;
     overflow: hidden;
+}
+
+.vl-quality-row {
+    height: 1px;
+}
+
+.vl-quality {
+	font-size: large;
+	list-style: none;
+}
+
+.vl-delete-row {
+    height: 1px;
 }
 
 .vl-delete {
     font-size: large;
+    text-align: right;
+    height: 1px;
 }
