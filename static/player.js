@@ -43,7 +43,8 @@ function initMenu() {
 		player.onPlayStateChange=function(){
 			switch (player.playState){
 			case 0:
-                window.history.back();
+				storeOffsetAndExit();
+                //window.history.back();
 				break;
 			case 1:
 				break;
