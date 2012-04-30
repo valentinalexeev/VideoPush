@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    	<meta http-equiv="content-type" content="application/ce-html+xml; charset=utf-8"/>
+        
+        <script language="JavaScript" src="/static/player.js"></script>
+        <script>
+            var player;
+
+            function loadVideo() {
+                player = document.getElementById("video");
+                playpause();
+            }
+
+            function playpause(){
+                if (player.playState != 1 || player.speed==4 || player.speed==-4){
+            		player.play(1);
+					player.currentTime({{ offset }});
+                } else if (player.playState == 1){
+                    player.play(0);
+                }
+            }
+			
+			function storeOffsetAndExit() {
+				window.location.href = "/pause?key={{ key }}&offset=" + player.currentPosition;
+			}
+        </script>
+
+        <style type="text/css">
+            body {
+                background: black;
+            }
+        </style>
+    </head>
+    <body onload="initMenu();document.onkeydown=handleNumberButtons;">
+        <center>
+        <object type="video/mp4" id="video" height="720" width="1280" data="{{ url }}">
+            <param name=”avControlMode” value=”localcontrol”/>
+        </object>
+        </center>
+    </body>
+</html>
