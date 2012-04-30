@@ -139,7 +139,7 @@ class VideoPauseHandler(webapp.RequestHandler):
 
 class TvLoginHandler(webapp.RequestHandler):
     def get(self):
-        self.response.headers.add_header('Set-Cookie', 'tvcookie=' + cgi.escape(self.request.get('tvcookie')) + ";max-age=" + (60 * 60 * 24 * 365) + ";path=/")
+        self.response.headers.add_header('Set-Cookie', 'tvcookie=' + cgi.escape(self.request.get('tvcookie')) + ";max-age=" + str(60 * 60 * 24 * 365) + ";path=/")
         self.redirect('/')
 
 class TvLogoutHandler(webapp.RequestHandler):
