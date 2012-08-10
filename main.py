@@ -110,8 +110,11 @@ class VideoPlayerHandler(webapp.RequestHandler):
 		player = "templates/player-object.html";
 		
 		if "SmartTV" in self.request.headers['User-Agent']:
-			# let's try to use <video> player
-			player = "templates/player-video.html";
+			# let's try to use SmartTV player
+			player = "templates/player-smarttv.html";
+		elif "iPad" in self.request.headers['User-Agent']:
+			# let's try the <video> player for iPad
+			player = "templates/player-video.html"
 		
 		path = os.path.join(os.path.dirname(__file__), player)
 		self.response.out.write(template.render(path, template_values))
