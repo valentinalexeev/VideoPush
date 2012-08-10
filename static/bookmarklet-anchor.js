@@ -1,1 +1,0 @@
-javascript:(function(){ms=document.createElement('SCRIPT');ms.type='text/javascript';ms.src='http://192.168.0.103/static/bookmarklet.firefox.js';document.getElementsByTagName('head')[0].appendChild(_my_script);})();
