@@ -7,10 +7,15 @@
                 background: black;
             }
         </style>
+		<script type="text/javascript">
+			function init() {
+				document.getElementById("video").focus();
+			}
+		</script>
     </head>
-    <body>
+    <body onload="init();">
         <center>
-        <video height="1080" width="1920" src="{{ url }}" autoplay poster="{{ thumb }}">
+        <video height="100%" width="100%" src="{{ url }}" autoplay="true" poster="{{ thumb }}" id="video">
         </video>
         </center>
     </body>
