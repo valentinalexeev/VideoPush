@@ -22,7 +22,8 @@
             }
 			
 			function storeOffsetAndExit() {
-				window.location.href = "/pause?key={{ key }}&offset=" + player.currentPosition;
+				//window.location.href = "/pause?key={{ key }}&offset=" + player.currentPosition;
+				window.location.href = "/";
 			}
         </script>
 
@@ -35,7 +36,7 @@
     <body onload="initMenu();document.onkeydown=handleNumberButtons;">
         <center>
         <object type="video/mp4" id="video" height="720" width="1280" data="{{ url }}">
-            <param name=”avControlMode” value=”localcontrol”/>
+            <param name="avControlMode" value="localcontrol"/>
         </object>
         </center>
     </body>
