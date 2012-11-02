@@ -1,6 +1,7 @@
 application: vavpush
 version: 1
-runtime: python
+runtime: python27
+threadsafe: true
 api_version: 1
 
 handlers:
@@ -12,4 +13,4 @@ handlers:
   static_dir: static
 
 - url: .*
-  script: main.py
+  script: main.app

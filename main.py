@@ -15,7 +15,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from google.appengine.ext import webapp
+import webapp2
 from google.appengine.api import users
 from google.appengine.ext.webapp import util
 from google.appengine.ext.webapp import template
@@ -30,7 +30,7 @@ import httplib
 
 from datamodel import *
 
-class MainHandler(webapp.RequestHandler):
+class MainHandler(webapp2.RequestHandler):
 	def get(self):
 		if 'tvcookie' in self.request.cookies:
 			tvcookie = int(cgi.escape(self.request.cookies['tvcookie']))
@@ -45,7 +45,7 @@ class MainHandler(webapp.RequestHandler):
 		else:
 			self.redirect('/static/tvlogin.html')
 
-class VideoItemHandler(webapp.RequestHandler):
+class VideoItemHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
 
@@ -82,7 +82,7 @@ class VideoItemHandler(webapp.RequestHandler):
         else:
             self.redirect(users.create_login_url(self.request.uri))
 
-class VideoPlayerHandler(webapp.RequestHandler):
+class VideoPlayerHandler(webapp2.RequestHandler):
     def get(self):
 		key = cgi.escape(self.request.get('key'))
 		quality = cgi.escape(self.request.get('quality'))
@@ -107,19 +107,18 @@ class VideoPlayerHandler(webapp.RequestHandler):
 			'key': key
 		}
 		
-		player = "templates/player-object.html";
+		player = "templates/player-flowplayer.html";
 		
 		if "SmartTV" in self.request.headers['User-Agent']:
-			# let's try to use SmartTV player
-			player = "templates/player-smarttv.html";
-		elif "iPad" in self.request.headers['User-Agent']:
-			# let's try the <video> player for iPad
-			player = "templates/player-video.html"
+			# let's try to use <video> player
+			player = "templates/player-video.html";
+		elif "Presto/2.2.1" in self.request.headers['User-Agent']:
+		    player = "templates/player-object.html"
 		
 		path = os.path.join(os.path.dirname(__file__), player)
 		self.response.out.write(template.render(path, template_values))
 
-class VideoDeleteHandler(webapp.RequestHandler):
+class VideoDeleteHandler(webapp2.RequestHandler):
     def get(self):
         if 'tvcookie' in self.request.cookies:
 			item = VideoItem.get(cgi.escape(self.request.get('key')))
@@ -130,7 +129,7 @@ class VideoDeleteHandler(webapp.RequestHandler):
         else:
             self.redirect('/static/tvlogin.html')
 
-class VideoPauseHandler(webapp.RequestHandler):
+class VideoPauseHandler(webapp2.RequestHandler):
 	def get(self):
 		if 'tvcookie' in self.request.cookies:
 			item = VideoItem.get(cgi.escape(self.request.get('key')))
@@ -140,17 +139,17 @@ class VideoPauseHandler(webapp.RequestHandler):
 		else:
 			self.redirect('/static/tvlogin.html')
 
-class TvLoginHandler(webapp.RequestHandler):
+class TvLoginHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.headers.add_header('Set-Cookie', 'tvcookie=' + cgi.escape(self.request.get('tvcookie')) + ";max-age=" + str(60 * 60 * 24 * 365) + ";path=/")
+        self.response.headers.add_header('Set-Cookie', str('tvcookie=' + cgi.escape(self.request.get('tvcookie')) + ";max-age=" + str(60 * 60 * 24 * 365)) + ";path=/")
         self.redirect('/')
 
-class TvLogoutHandler(webapp.RequestHandler):
+class TvLogoutHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.headers.add_header('Set-Cookie', 'tvcookie=;Max-Age=0;path=/')
+        self.response.headers.add_header('Set-Cookie', str('tvcookie=;Max-Age=0;path=/'))
         self.redirect(users.create_logout_url('/'))
 
-class TvRegisterHandler(webapp.RequestHandler):
+class TvRegisterHandler(webapp2.RequestHandler):
 	def get(self):
 		user = users.get_current_user()
 		
@@ -167,10 +166,7 @@ class TvRegisterHandler(webapp.RequestHandler):
 			self.redirect(users.create_login_url(self.request.uri))	
 
 # Entry point
-
-def main():
-    logging.getLogger().setLevel(logging.DEBUG)
-    application = webapp.WSGIApplication([
+app = webapp2.WSGIApplication([
         ('/', MainHandler),
         ('/submit', VideoItemHandler),
         ('/delete', VideoDeleteHandler),
@@ -180,8 +176,3 @@ def main():
 		('/tvregister', TvRegisterHandler),
 		('/pause', VideoPauseHandler)
         ],debug=True)
-    util.run_wsgi_app(application)
-
-
-if __name__ == '__main__':
-    main()
