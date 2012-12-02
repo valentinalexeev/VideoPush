@@ -52,7 +52,7 @@ function pathToHD(res) {
     ? video_host
     : 'http://cs' + video_host + '.vkontakte.ru/';
 
-  return s + 'u' + video_uid + '/video/' + video_vtag + '.' + res + '.mp4';
+  return s + 'u' + video_uid + '/videos/' + video_vtag + '.' + res + '.mp4';
 }
 
 setTimeout(vavpushBookmarklet, 100);
