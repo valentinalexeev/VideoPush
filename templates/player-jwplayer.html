@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <script type="text/javascript" src="/static/jwplayer/jwplayer.js"></script>
+    </head>
+    <body>
+        <div id="jwplayer">Loading player...</div>
+        ￼
+        <script type="text/javascript">
+            jwplayer("jwplayer").setup({
+                flashplayer: "/static/jwplayer/player.swf", file: "{{ url }}",
+                height: 1080,
+                width: 1920,
+                image: "{{ thumb }}",
+                autostart: true,
+                events: {
+                    onReady: function() { this.setFullscreen(true); this.play(); },
+                    onComplete: function() { window.history.go(-1); }
+                }
+            });
+        </script>
+    </body>
+</html>
