@@ -29,6 +29,7 @@ import logging
 import httplib
 
 from datamodel import *
+from kinopoisk import search_title, search_data, KinopoiskResult, get_page
 
 class MainHandler(webapp.RequestHandler):
 	def get(self):
@@ -43,6 +44,28 @@ class MainHandler(webapp.RequestHandler):
 			path = os.path.join(os.path.dirname(__file__), 'templates/list.html')
 			self.response.out.write(template.render(path, template_values))
 		else:
+			self.redirect('/static/tvlogin.html')
+
+class AjaxHandler(webapp.RequestHandler):
+    def get(self):
+    	if 'tvcookie' in self.request.cookies:
+            if cgi.escape(self.request.get('method')) == 'list':
+                tvcookie = int(cgi.escape(self.request.cookies['tvcookie']))
+                #videos = db.GqlQuery("SELECT * FROM VideoItem WHERE tvcookie = :1 ORDER BY title", tvcookie)
+                videos = db.GqlQuery("SELECT * FROM VideoItem WHERE tvcookie = :1", tvcookie)
+                template_values = {
+                    'videos': videos,
+                    'logout': users.create_logout_url('/')
+                }
+                path = os.path.join(os.path.dirname(__file__), 'templates/ajax.list.json')
+                self.response.headers.add_header("Content-type", "application/json")
+                self.response.out.write(template.render(path, template_values))
+            elif cgi.escape(self.request.get('method')) == 'kinopoisk':
+                self.response.headers.add_header("Content-type", "application/json")
+                self.response.out.write(search_data(cgi.escape(self.request.get('id')), "ru").as_json())
+            elif cgi.escape(self.request.get('method')) == 'kinopoiskdata':
+                self.response.out.write(get_page("/level/17/film/432550"))
+    	else:
 			self.redirect('/static/tvlogin.html')
 
 class VideoItemHandler(webapp.RequestHandler):
@@ -142,12 +165,12 @@ class VideoPauseHandler(webapp.RequestHandler):
 
 class TvLoginHandler(webapp.RequestHandler):
     def get(self):
-        self.response.headers.add_header('Set-Cookie', 'tvcookie=' + cgi.escape(self.request.get('tvcookie')) + ";max-age=" + str(60 * 60 * 24 * 365) + ";path=/")
+        self.response.headers.add_header('Set-Cookie', str('tvcookie=' + cgi.escape(self.request.get('tvcookie')) + ";max-age=" + str(60 * 60 * 24 * 365) + ";path=/"))
         self.redirect('/')
 
 class TvLogoutHandler(webapp.RequestHandler):
     def get(self):
-        self.response.headers.add_header('Set-Cookie', 'tvcookie=;Max-Age=0;path=/')
+        self.response.headers.add_header('Set-Cookie', str('tvcookie=;Max-Age=0;path=/'))
         self.redirect(users.create_logout_url('/'))
 
 class TvRegisterHandler(webapp.RequestHandler):
@@ -168,20 +191,14 @@ class TvRegisterHandler(webapp.RequestHandler):
 
 # Entry point
 
-def main():
-    logging.getLogger().setLevel(logging.DEBUG)
-    application = webapp.WSGIApplication([
+app = webapp.WSGIApplication([
         ('/', MainHandler),
         ('/submit', VideoItemHandler),
         ('/delete', VideoDeleteHandler),
         ('/player', VideoPlayerHandler),
         ('/tvlogin', TvLoginHandler),
 		('/tvlogout', TvLogoutHandler),
-		('/tvregister', TvRegisterHandler),
+    	('/tvregister', TvRegisterHandler),
+    	('/ajax', AjaxHandler),
 		('/pause', VideoPauseHandler)
         ],debug=True)
-    util.run_wsgi_app(application)
-
-
-if __name__ == '__main__':
-    main()

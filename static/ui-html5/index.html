@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title></title>
+  <link href="style.css" rel="stylesheet" type="text/css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script src="keyboard.js"></script>
+  <script src="script.js"></script>
+</head>
+<body>
+  <div class="wrapper">
+  <div class="covers" id="covers">
+  </div>
+  <div class="push"></div>
+  </div>
+
+  <div class="footer">
+    <!--
+      <button onclick="clearAll();">clear all</button>
+      <button onclick="addJsonItem();">add</button>
+      <button onclick="prev();">prev</button>
+      <button onclick="next();">next</button>
+      <button onclick="down();">down</button>
+      <button onclick="up();">up</button>
+      <button onclick="fromJson();">from json</button>
+      <button onclick="enter();">enter</button>
+    -->
+      <div class="title" id="title"></div>
+      <div class="descr" id="descr"></div>
+      <div class="links" id="links"></div>
+  </div>
+
+  <div id="details-overlay" class="details-overlay"></div>
+  <div id="details" class="details">
+    <div class="details-container">
+      <div id="details-cover-container"><img src="" id="details-cover"/></div>
+      <div id="details-text-container">
+        <div id="details-title"></div>
+        <div id="details-descr"></div>
+        <div id="details-watch"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

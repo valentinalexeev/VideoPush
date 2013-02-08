@@ -1,0 +1,35 @@
+.vavpush-tmdb {
+    display: inline-block;
+    width: 200px;
+    height: 231px;
+    margin: 20px;
+    text-align: center;
+}
+
+.vavpush-tmdb > div.img {
+    height: 231px;
+    width: 153px;
+}
+
+#vavpush-dialog {
+    z-index: 5000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: black;
+    color: white;
+}
+
+#vavpush-close {
+    color: white;
+    background: gray;
+    position: absolute;
+    top: 0;
+    right: 0px;
+    z-index: 5001;
+    font-size: 35px;
+    margin: 10px;
+    cursor: pointer;
+}

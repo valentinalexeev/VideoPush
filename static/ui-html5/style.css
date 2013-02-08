@@ -1,0 +1,134 @@
+body {
+  margin: 20px;
+  x-overflow: hidden;
+
+  font-family: Helvetica;
+
+  background: #ff9a00;
+}
+
+.covers > img {
+  width: 188px;
+}
+
+.cover {
+  border-style: solid;
+  border-width: 10px;
+  border-color: #ffc600;
+  margin: 5px;
+}
+
+.cover-selected {
+  border-style: solid;
+  border-width: 10px;
+  border-color: #ff5900;
+}
+
+.footer {
+   margin: 20px;
+   margin-bottom: 50px;
+   position:fixed;
+   bottom:0px;
+   left:0px;
+   right:0px;
+   height:180px;
+   background-color:#0d56a6;
+   color: white;
+}
+
+.footer .title {
+   margin: 10px;
+   font-size: 55px;
+   height: 65px;
+}
+
+.footer .descr {
+   margin: 10px;
+   font-size: 25px;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   height: 90px;
+}
+
+.details-overlay {
+    width:100%; 
+    height:100%;
+    position:absolute; 
+    top:0; left:0; 
+    z-index:3000; 
+    display:none;
+
+    filter:alpha(opacity=50); 
+    -moz-opacity:0.5; 
+    -khtml-opacity: 0.5; 
+    opacity: 0.5; 
+    background:#000; 
+}
+
+.details {
+    z-index: 5000;
+    display: none;
+    height: 100%;
+    width: 100%;
+    position:absolute; 
+    top:0; left:0; 
+}
+
+.details-container {
+    position: relative;
+}
+
+.details table {
+    width: 100%;
+    height: 100%;
+}
+
+.details img {
+    height: 100%;
+}
+
+.details-cover-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    height: 100%;
+}
+
+#details-text-container {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 75%;
+    height: 90%;
+    background: #0d56a6; 
+    margin-top: 50px;
+
+    filter:alpha(opacity=90); 
+    -moz-opacity:0.9; 
+    -khtml-opacity: 0.9; 
+    opacity: 0.9;
+
+
+    color: white;
+}
+
+#details-title {
+    font-size: 75pt;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    font-weight: bold;
+    margin: 10px;
+    color: #ff5900;
+}
+
+#details-descr {
+    font-size: 35pt;
+    margin: 40px;
+    height: 600px;
+    overflow: hidden;
+    text-overflow: ellipsis-lastline;
+    line-height: 41pt;
+}

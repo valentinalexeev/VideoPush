@@ -1,0 +1,17 @@
+{
+    "items": [
+        {% for video in videos %}
+        {
+            "title": "{{video.title}}",
+            "description": "{{ video.description }}",
+            "cover": "{{ video.thumb }}",
+            "key": "{{ video.key }}",
+            "quality": [
+            {% for url in video.urls|dictsortreversed:"quality" %}
+                "{{ url.quality }}" {% if not forloop.last %},{% endif %}
+            {% endfor %}
+            ]
+        }{% if not forloop.last %},{% endif %}
+        {% endfor %}
+  ]
+}
