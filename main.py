@@ -29,7 +29,6 @@ import logging
 import httplib
 
 from datamodel import *
-from kinopoisk import search_title, search_data, KinopoiskResult, get_page
 
 class MainHandler(webapp2.RequestHandler):
 	def get(self):
@@ -60,11 +59,6 @@ class AjaxHandler(webapp2.RequestHandler):
                 path = os.path.join(os.path.dirname(__file__), 'templates/ajax.list.json')
                 self.response.headers.add_header("Content-type", "application/json")
                 self.response.out.write(template.render(path, template_values))
-            elif cgi.escape(self.request.get('method')) == 'kinopoisk':
-                self.response.headers.add_header("Content-type", "application/json")
-                self.response.out.write(search_data(cgi.escape(self.request.get('id')), "ru").as_json())
-            elif cgi.escape(self.request.get('method')) == 'kinopoiskdata':
-                self.response.out.write(get_page("/level/17/film/432550"))
     	else:
 			self.redirect('/static/tvlogin.html')
 
