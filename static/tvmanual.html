@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html>
+    <head>
+    	<meta http-equiv="content-type" content="application/ce-html+xml; charset=utf-8"/>
+        <link rel="stylesheet" type="text/css" href="/static/list.css"/>
+        <title>VideoPush: manual submission</title>
+    </head>
+  <body>
+    <div id="header">
+        Manually submit an item to TV
+    </div>
+    <div id="info">
+        Add an item to TV queue by specifying parameters directly.
+    </div>
+    <div>
+        <form action="/submit">
+            <label for="title">Title</label><input type="text" name="title"/><br/>
+            <label for="thumb">Thumbnail</label><input type="text" name="thumb"/><br/>
+            <table border="0">
+                <thead>
+                    <tr><td>Quality</td><td>URL</td></tr>
+                </thead>
+                <tbody>
+                    <tr><td><input type="text" name="q"/></td><td><input type="text" name="url"/></td></tr>
+                    <tr><td><input type="text" name="q"/></td><td><input type="text" name="url"/></td></tr>
+                    <tr><td><input type="text" name="q"/></td><td><input type="text" name="url"/></td></tr>
+                    <tr><td><input type="text" name="q"/></td><td><input type="text" name="url"/></td></tr>
+                </tbody>
+            </table>
+            <input type="submit" value="Create"/>
+        </form>
+    </div>
+  </body>
+</html>
