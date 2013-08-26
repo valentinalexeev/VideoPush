@@ -9,7 +9,7 @@ function vavpushBookmarklet(){
   for (var i = 0; i<attrs.length;i++) {
     var kv = attrs[i].split("=");
 
-    if (kv[0].indexOf("thumb") == 0) {
+    if (kv[0].indexOf("jpg") == 0) {
         thumb = unescape(attrs[i].split("=")[1]);
         break;
     }
@@ -48,11 +48,7 @@ function vavpushBookmarklet(){
 };
 
 function pathToHD(res) {
-  var s = (video_host.substr(0, 4) == "http")
-    ? video_host
-    : 'http://cs' + video_host + '.vkontakte.ru/';
-
-  return s + 'u' + video_uid + '/videos/' + video_vtag + '.' + res + '.mp4';
+  return [ 'http://cs', video_host, '.vk.me/u', video_uid, '/videos/', video_vtag, '.', res, '.mp4' ].join("");
 }
 
 setTimeout(vavpushBookmarklet, 100);
