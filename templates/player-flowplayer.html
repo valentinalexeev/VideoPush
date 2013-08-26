@@ -3,20 +3,15 @@
         <!-- 1. jquery library -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
         <!-- 2. flowplayer -->
-        <script src="http://releases.flowplayer.org/5.1.1/flowplayer.min.js"></script>
+        <script src="http://releases.flowplayer.org/5.4.3/flowplayer.min.js"></script>
         <!-- 3. skin -->
-        <link rel="stylesheet" type="text/css" href="http://releases.flowplayer.org/5.1.1/skin/minimalist.css" />
-        <script language="javascript">
-            $(document).ready(function() {
-                var api = flowplayer();
-                api.bind("finish", function () {window.history.go(-1);});
-                api.fullscreen();    
-            });
-        </script>
+        <link rel="stylesheet" type="text/css" href="http://releases.flowplayer.org/5.4.3/skin/minimalist.css" />
     </head>
     <body>
         <div class="flowplayer">
-           <video src="{{ url }}" autoplay poster="{{ thumb }}"></video>
+            <video>
+              <source type="video/mp4" src="{{ url }}"/>
+           </video>
         </div>
     </body>
 </html>
